@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The focusable elements</title>
+
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+    <h1>The focusable elements.</h1>
+    <p>Check the <code>console</code> to see what elements are captured by <code>window.FocusableElement.getKeyboardFocusableElements(document.body)</code></p>
+
+    <main>
+        <div class="item">
+            <p>A &lt;a&gt; is a focusable element.</p>
+            <ul>
+                <li>
+                    <a href="" id="link">#link</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>A &lt;button&gt; is a focusable element, except if it's disabled.</p>
+            <ul>
+                <li>
+                    <button id="normal-button">#normal-button</button>
+                </li>
+                <li>
+                    <button disabled id="disabled-button">#disabled-button</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>An &lt;input&gt; is a focusable element, except if it's hidden.</p>
+            <ul>
+                <li>
+                    <input type="text" value="#normal-input" id="normal-input">
+                </li>
+                <li>
+                    <input type="hidden" value="#hidden-input" id="hidden-input">
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>A &lt;textarea&gt; is a focusable element.</p>
+            <ul>
+                <li>
+                    <textarea style="resize: none;" id="textarea">#textarea</textarea>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>A &lt;select&gt; is a focusable element.</p>
+            <ul>
+                <li>
+                    <select id="select">
+                        <option value="">#select</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="item">
+            <p>&lt;summary&gt; is a focusable element.</p>
+            <ul>
+                <li>
+                    <details>
+                        <summary id="summary">#summary</summary>
+                        This is focusable.
+                    </details>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>Any element that has <code>tabindex="0"</code> is focusable. <span class="red">We do not take into account positive numbers.</span></p>
+            <ul>
+                <li>
+                    <button id="button-tabindex0" tabindex="0">#button-tabindex0 (tabindex="0")</button>
+                </li>
+                <li>
+                    <button id="button-tabindex1" tabindex="1">#button-tabindex1 (tabindex="1")</button>
+                </li>
+                <li>
+                    <button id="button-tabindex-1" tabindex="-1">#button-tabindex-1 (tabindex="-1")</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>If an element has "display:none", "visibility:hidden" then it's not focusable.</p>
+            <ul>
+                <li>
+                    <div id="display-none" tabindex="0" style="display:none;">#display-none</div>
+                </li>
+                <li>
+                    <div id="visibility-hidden" tabindex="0" style="visibility: hidden;">#visibility-hidden</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <p>An element with a z-index of -1 is also focusable with the keyboard.</p>
+            <ul>
+                <li style="position:relative;">
+                    <div style="position:absolute; z-index:-1;" tabindex="0" id="z-index-1">#z-index-1</div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../FocusableElement.js"></script>
+    <script>
+        console.log(window.FocusableElement.getKeyboardFocusableElements(document.body));
+
+        window.addEventListener("keyup", (e) => {
+            if (e.key === "Tab") {
+                console.log("You are on ", e.target);
+            }
+        });
+    </script>
+</body>
+</html>

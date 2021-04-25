@@ -1,0 +1,35 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 25px;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.item {
+    width: 100%;
+}
+
+.item p {
+    margin-right: 15px;
+}
+
+code {
+    box-shadow: 1px 1px 0 0 rgb(168, 168, 168);
+    background-color: rgb(226, 226, 226);
+    border-radius: 3px;
+    font-family: monospace;
+    padding: 5px 10px;
+}
+
+.red {
+    color: red;
+}
